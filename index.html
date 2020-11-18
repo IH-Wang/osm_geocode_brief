@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="static/css/reset.css" />
+    <link rel="stylesheet" href="static/css/reveal.css" />
+    <link rel="stylesheet" href="static/css/black.css" id="theme" />
+
+    <style>
+      p {
+        text-align: left;
+      }
+      .reveal .subTitle {
+        color: tomato;
+      }
+      .reveal .tableHeader th {
+        text-align: center;
+      }
+      .tableHeader p {
+        color: gray;
+        font-size: 0.8em;
+        text-align: center;
+      }
+      .gridContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        font-size: 0.6em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h3>地址經緯度第三方 solution 簡介</h3>
+        </section>
+        <section>
+          <h2>方案</h2>
+          <ul>
+            <li>OpenStreetMap Nominatim Service</li>
+            <li>HERE STUDIO</li>
+          </ul>
+        </section>
+        <section>
+          <h3 style="font-size: 1.1em">OpenStreetMap Nominatim Service</h3>
+          <section>
+            <p>
+              Nominatim 是一個基於 osm 開發的搜尋引擎，
+              它主要功能是將地址轉經緯度或經緯度轉地址。
+            </p>
+          </section>
+          <section>
+            <p>它提供兩種方式給一般 osm 用戶作使用。</p>
+            <ul>
+              <li>輕量級用戶建議直接使用它們的 api 做使用就行</li>
+              <li>
+                頻繁的應用則推薦自己架設 Nominatim 的
+                server，官網也有提供環境建置教學流程，網路上也有包好的docker
+                image可以直接使用。
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">基本安裝</h4>
+            <ul style="list-style-type: upper-roman">
+              <li>環境: Linux Ubuntu 18.04, 20.04 | CentOS 7.2, 8</li>
+              <li>
+                <p>軟體需求:</p>
+                <ul style="list-style-type: disc">
+                  <li>
+                    <p>編譯用:</p>
+                    <p>
+                      <small>
+                        cmake, expat, proj, bzip2, Zlib, Boost
+                        libraries(including system and filesystem), PostgreSQL
+                        client libraries, a recent C++ compiler (gcc 5+ or Clang
+                        3.8+)
+                      </small>
+                    </p>
+                  </li>
+                  <li>
+                    <p>執行用:</p>
+                    <p>
+                      <small>
+                        PostgreSQL (9.3+), PostGIS (2.2+), Python3, Psycopg2,
+                        PHP (7.0 or later), PHP-pgsql,PHP-intl (bundled with
+                        PHP), a webserver (apache or nginx are recommended)
+                      </small>
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">基本安裝</h4>
+            <ul style="list-style-type: none">
+              <li>
+                <p>III. 硬體需求:</p>
+                <ul style="list-style-type: disc">
+                  <li>
+                    <p>
+                      記憶體:
+                      最低2GB否則會建置失敗，如果要跑整個地球的地址搜尋，則需要至少64GB。
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      硬碟空間:
+                      至少800GB，需要將所需的osm圖資匯入資料庫，而osm圖資也日漸增長，另外使用SSD硬碟則可加快匯入圖資速度及查詢速度。
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h3>HERE STUDIO</h3>
+          <section>
+            <p>
+              HERE Studio/Data Hub 是 HERE Technologies
+              所推出的一個線上地圖製作平台，其功能有兩大核心 Data Hub，以及
+              Studio。
+            </p>
+          </section>
+          <section>
+            <h4 class="subTitle">主要特色</h4>
+            <ul>
+              <li><p>強大的地圖資料管理和顯示工具</p></li>
+              <li><p>有限的免費且方便的的雲端服務</p></li>
+              <li><p>嚴謹的權限管理功能</p></li>
+              <li><p>快速方便的 UI 元件</p></li>
+              <li><p>快速的處理調整並發布</p></li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">地圖相關服務 API</h4>
+            <ul style="font-size: 0.6em">
+              <li>
+                <p>HERE Data Hub / Studio：地圖資料儲存、發布與地圖製作</p>
+              </li>
+              <li><p>HERE Map Tile API：點陣圖（PNG/JPEG）地圖磚</p></li>
+              <li>
+                <p>HERE Geocode and Search API：經緯度與地址查詢、反查</p>
+              </li>
+              <li><p>HERE Waypoints Sequence：路徑點最佳化排序</p></li>
+              <li><p>HERE Routing API：路徑計算與詳細指引</p></li>
+              <li><p>HERE Route Matching：接收gps軌跡檔分析並回傳結果</p></li>
+              <li><p>HERE Matrix Routing：多點之間的空間關係計算</p></li>
+              <li><p>HERE Isoline Routing：特定時間或空間的可及範圍計算</p></li>
+              <li>
+                <p>
+                  HERE Tour Planning：針對物流業的使用場景而推出的一個新服務
+                </p>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">收費方式</h4>
+            <table>
+              <thead class="tableHeader">
+                <th>
+                  <h5>Freemium</h5>
+                  <p>0 $/mo</p>
+                  <p style="font-size: 0.6em">
+                    Build your app, service or web map for free(No credit card
+                    required)
+                  </p>
+                </th>
+                <th>
+                  <h5>Add-on</h5>
+                  <p>45 $/mo</p>
+                  <p style="font-size: 0.6em">
+                    All of Freemium plus a little extra
+                  </p>
+                </th>
+                <th>
+                  <h5>Pro</h5>
+                  <p>499 $/mo</p>
+                  <p style="font-size: 0.6em">
+                    Boost your limits and add support
+                  </p>
+                </th>
+              </thead>
+              <tbody>
+                <tr style="font-size: 0.4em">
+                  <td style="vertical-align: top">
+                    <ul>
+                      <li>Transactions per month 250K</li>
+                      <li>Pay per additional Transactions 1000 / $1</li>
+                      <li>
+                        Monthly Active Users 5K Assets per month 250 HERE Data
+                      </li>
+                      <li>
+                        Layers for 1 city map tile with data refresh available
+                        for 6
+                      </li>
+                      <li>
+                        months Data transfer per month 2.5GB Database storage
+                        per
+                      </li>
+                      <li>
+                        month 5GB Pay per additional Data transfer 100MB / $1
+                        Pay
+                      </li>
+                      <li>
+                        per additional Database storage 5GB / $3 Support via
+                      </li>
+                      <li>Support viaStackOverflow</li>
+                    </ul>
+                  </td>
+                  <td style="vertical-align: top">
+                    <ul>
+                      <li>Data hub</li>
+                      <li>Data transfer per month 10GB</li>
+                      <li>Database storage per month 10GB</li>
+                      <li>Pay per additional Data transfer 100MB / $0.45</li>
+                      <li>Pay per additional Database storage 5GB / $3</li>
+                      <li>Data Hub advanced features</li>
+                      <li>Support viaStackOverflow</li>
+                    </ul>
+                  </td>
+                  <td style="vertical-align: top">
+                    <ul>
+                      <li>Transactions per month 1 Million</li>
+                      <li>Pay per additional Transactions 1000 / $1</li>
+                      <li>Monthly Active Users 5K</li>
+                      <li>Assets per month 250</li>
+                      <li>
+                        HERE Data Layers for 2 city map tiles with data refresh
+                        available
+                      </li>
+                      <li>Data Hub Add-on</li>
+                      <li>Live Sense SDK</li>
+                      <li>Support via Customer Support Portal</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h4 class="subTitle">整合應用服務 - 服務開始前</h4>
+            <ul>
+              <li>車隊成本計算 - HERE Tour Planning</li>
+              <li>
+                物流路線規劃 - HERE Tour Planning / HERE Waypoints Sequence
+              </li>
+              <li>地理資料儲存 - HERE Data Hub / HERE Custom Location</li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">整合應用服務 - 使用者端</h4>
+            <ul>
+              <li>查詢地址或地點 - HERE Geocoder API / HERE Places API</li>
+              <li>以時間或距離計算物流費用 - HERE Routing API</li>
+              <li>即時動態地圖 - HERE JavaScript API / HERE SDK</li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">整合應用服務 - 服務進行中</h4>
+            <ul style="font-size: 0.5em">
+              <li>
+                管理中心的即時車隊動態地圖與訂單地圖 - HERE JavaScript API /
+                HERE Data Hub / HERE Custom Location
+              </li>
+              <li>管理中心監控車輛或貨品的位置 - HERE Tracking</li>
+              <li>
+                管理中心監控車輛的目的地資訊，甚至動態更新每個目的地的抵達時間 -
+                HERE Waypoints Sequence
+              </li>
+              <li>
+                透過路徑計算的功能來得知抵達下一個地點的時間與距離，藉此通報客戶端以及管理中心，雙方都可以得知即時的動態與到達時間
+                - HERE Routing API
+              </li>
+              <li>
+                當物流車輛接近客戶位置時，觸發事件告知客戶端準備進行收件或取件 -
+                HERE Geofencing
+              </li>
+              <li>
+                管理中心監控車輛是否有不正常的偏離路線的狀況，特別是車輛載送高價值貨物時
+                - HERE Geofencing
+              </li>
+              <li>
+                針對臨時的急件，派出最接近的車輛前往服務 - HERE Matrix Routing
+              </li>
+              <li>
+                針對特定的道路進行迴避，或是在客戶的私人場域中進行路徑規劃 -
+                HERE Custom Routes
+              </li>
+              <li>
+                司機端的語音導航、測速照相警告、管理中心的派遣功能 - HERE SDK
+                Premium
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="subTitle">整合應用服務 - 服務結束後</h4>
+            <p>
+              針對司機的駕駛行為進行分析，並採取必要措施降低風險 - HERE Route
+              Matching
+            </p>
+          </section>
+        </section>
+        <section>
+          <h3>總結</h3>
+          <ul>
+            <li>開發遇到的問題</li>
+            <li>功能需求</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="static/js/reveal.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+      });
+    </script>
+  </body>
+</html>
